@@ -1,2 +1,13 @@
 Django==1.11.5
+django-easy-pdf==0.1.1
+html5lib==1.0b8
+num2words==0.5.5
+olefile==0.44
+Pillow==4.2.1
+PyPDF2==1.26.0
+python-dateutil==2.6.1
 pytz==2017.2
+reportlab==3.4.0
+six==1.10.0
+webencodings==0.5.1
+xhtml2pdf==0.0.6
