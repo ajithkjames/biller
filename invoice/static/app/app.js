@@ -1,7 +1,7 @@
 var invoices=angular.module('invoices',  ["angular-autogrow",'720kb.datepicker'])
 
 // The default API base url
-.constant('url', 'http://192.168.1.105:8000')
+.constant('url', 'http://127.0.0.1:8000')
 
 // The default logo for the invoice
 .constant('DEFAULT_LOGO', 'assets/images/logo.jpg')
@@ -22,7 +22,7 @@ var invoices=angular.module('invoices',  ["angular-autogrow",'720kb.datepicker']
   from:'',
   to:'',
   items:[
-    { qty: 1, description: '', cost: 0 }
+    { qty: 1, description: '', cost: 0,net: 0,tax: 0 }
   ]
 })
 

@@ -119,7 +119,7 @@ invoices.controller('InvoiceCtrl', ['$scope','$sce', '$http', 'DEFAULT_INVOICE',
   // Adds an item to the invoice's items
   $scope.addItem = function() {
     localStorage['currencySymbol'] = $scope.currencySymbol;
-      $scope.invoice.items.push({ qty:1, cost:0, description:"",$$hashKey:(0|Math.random()*9e6).toString(36)});
+      $scope.invoice.items.push({ qty:1, cost:0, tax:0, description:"",net:"",$$hashKey:(0|Math.random()*9e6).toString(36)});
   
   }
   $scope.addAdditionalTax=function() {
@@ -213,12 +213,17 @@ invoices.controller('InvoiceCtrl', ['$scope','$sce', '$http', 'DEFAULT_INVOICE',
     $scope.invoice.items.splice($scope.invoice.items.indexOf(item), 1);
   };
 
+  $scope.netItem = function(item) {
+    $scope.invoice.items.splice($scope.invoice.items.indexOf(item), 1);
+  };
   // Calculates the sub total of the invoice
   $scope.invoiceSubTotal = function() {
     localStorage['currencySymbol'] = $scope.currencySymbol; 
     var total = 0.00;
     angular.forEach($scope.invoice.items, function(item, key){
       total += (item.qty * item.cost);
+      item.net=(item.qty * item.cost);
+      item.gross=(item.qty * item.cost) - (item.net * item.tax/100);
     });
     $scope.subtotal=total;
     return total;

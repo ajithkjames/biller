@@ -151,11 +151,11 @@
                         <td>{{ forloop.counter }}</td>
                         <td>{{item.description}}</td>
                         <td></td>
-                        <td></td>
+                        <td>{{item.tax}}</td>
                         <td>{{item.qty}}</td>
                         <td>{{currency}} {{item.cost}}</td>
-                        <td>{{currency}} {% widthratio item.qty 1 item.cost %}</td>
-                        <td></td>  
+                        <td>{{currency}} {{item.net}}</td>
+                        <td>{{currency}} {{item.gross}}</td>  
                     </tr>
                     {% endfor %}
                    <tr class="noborder">
