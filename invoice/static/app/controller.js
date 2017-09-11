@@ -223,7 +223,7 @@ invoices.controller('InvoiceCtrl', ['$scope','$sce', '$http', 'DEFAULT_INVOICE',
     angular.forEach($scope.invoice.items, function(item, key){
       total += (item.qty * item.cost);
       item.net=(item.qty * item.cost);
-      item.gross=(item.qty * item.cost) - (item.net * item.tax/100);
+      item.gross=(item.qty * item.cost) + (item.net * item.tax/100);
     });
     $scope.subtotal=total;
     return total;
