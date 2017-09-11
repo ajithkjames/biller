@@ -1,0 +1,346 @@
+
+{% extends "easy_pdf/base.html" %}
+
+{% block layout_style %}
+    <style type="text/css">
+        @page {
+
+            size: {{ pagesize|default:"A4" }};
+            
+            @frame header {
+                -pdf-frame-content: page-header;
+                margin: 20px;
+               /* border: 1px solid black;*/
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block extra_style %}
+    <style type="text/css">
+      @font-face { font-family: Awesome; src: url(fonts/Roboto-Regular.ttf); }
+        html {
+            font-family: "Lato", "Helvetica", "sans-serif";
+            color: #333333;
+        }
+        p {
+            margin: 0 0 6px 0;
+            font-size: 11pt;
+            font-family: "Lato", "Helvetica", "sans-serif";
+        }
+        pre{
+            font-family: Awesome ;
+            color: black;
+            font-size: 10pt;
+        }
+        table {
+            line-height: 140%;
+            margin-bottom: 20px;
+        }
+            table.bordered {
+                border-top: 0.05pt solid #000;
+                border-bottom: 0.1pt solid #000;
+                border-right: 0.05pt solid #000;
+            }
+            tr, td, th { text-align: left; }
+            th {
+                font-size: 10pt;
+                border-bottom: 0.1pt solid #999999;
+                padding: 3px 0;
+                line-height: 1;
+                font-weight: bold;
+            }
+            td {
+
+                text-align: center;
+                font-size: 10pt;
+                font-family: Awesome;
+                vertical-align: top;
+                padding: 3px 0;
+            }
+            td:last-child { padding-bottom: 0; }
+        .text-left { text-align: left; }
+        .text-right { text-align: right; }
+        .bottom-10 { margin-bottom: 10px; }
+        .bottom-20 { margin-bottom: 20px; }
+        .header { color: #7f7f7f; }
+        .header p { font-size: 13px; line-height: 1.5em; }
+        .header-link { font-weight: bold; text-decoration: none; color: #4F81BD; font-size: 14px; }
+        .logo { margin-bottom: 20px; margin-left: -25px; }
+        .logo img { zoom: 60%; }
+        .recipient { margin-left: 7cm; }
+        #items{
+           
+            border-right: 0.05pt solid #000;
+        }
+        #items th{
+             border-top: 0.05pt solid #000;
+            border-bottom: 0.1pt solid #000;
+        }
+        .noborder{
+            border-top:none;border-bottom: none;
+
+        }
+    </style>
+{% endblock %}
+
+
+{% block content %}
+
+        <table style="margin-left:10px;"">
+            <tr>
+                <td>
+                    <strong style="color:red;font-size: 25px;font-weight: 900">ZODIAC SIGN</strong><br>
+                    <span style="padding: 0px;text-align: center;">43/1383-B, Kannachan Thodu Road<br>
+                    Pachalam, Ernakulam  <br>
+                    PKochi - 682012 <br/>
+                    Mob:9847151487 <br/>
+                    E-Mail : zodiacsign15@gmail.com
+                    </span>
+                </td>
+                <td>
+                    The Kerala Value Added Tax Rules 2005 (for Vat Dealers Other Than Manufactures) [see Rules  58(10)] 
+                    <div style="border: 1px solid black;width: 20px;">
+                        FORM No.8 <br>TAX INVOICE <br>CASH/CREDIT
+                    </div>
+                </td>
+                <td style="padding-top: 1cm;">
+                    <span > TIN : 32071541602 <br><br>
+                    ORIGINAL </span>
+                   
+                </td>
+            </tr>
+        </table>
+        <div class="main">
+            
+
+            <table class="bordered " style="text-align: left;">
+                <tr>
+                    <th style="padding-left: 1cm;"><strong>Invoice No: {{number}}</strong></th>
+                    <th style="padding-left: 1cm;"><strong>Date:   {{date}}</strong></th>
+                    
+                </tr>
+                <tr>
+                    <td style="text-align: left;padding-left: .2cm;">
+                        Name & Address of Purchasing Dealer : <br>
+                        <o style="white-space: pre;">{{to}}
+                        </o>
+                    </td>
+                    <td style="text-align: left;padding-left: .2cm;">
+                        TIN No: &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp <strong>34654654654</strong> <br>
+                        Telephone No: &nbsp <strong>04902455935</strong> <br>
+                        Mobile: &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp <strong>9633085903</strong><br> 
+                        Email: &nbsp &nbsp &nbsp &nbsp  &nbsp &nbsp &nbsp &nbspajith.kjames3@gmail.com 
+                    </td>
+
+                </tr>
+                <table style="text-align: center;border:1px solid black;">
+                    <tr >
+                        <th style="width: 15%; padding: 5px;"><strong>SI. <br>No</strong></th>
+                        <th style="width: 65%; padding: 5px;"><strong>Schedule with Entry No. Commodity / Item</strong>
+                        </th>
+                        <th style="width: 20%; padding: 5px;"><strong>Commodity Code</strong></th>
+                         <th style="width: 16%; padding: 5px;"><strong>Rate Of Tax</strong></th>
+                        <th style="width: 12%; padding: 5px;"><strong>Qty</strong></th>
+                        <th style="width: 24%; padding: 5px;"><strong>Unit Price</strong></th>
+                        <th style="width: 24%; padding: 5px;"><strong>Gross Value</strong></th>
+                        <th style="width: 24%; padding: 5px;"><strong>Net Value</strong></th>
+                    </tr>
+                    {% for item in items%}
+                     <tr class="noborder">
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{item.description}}</td>
+                        <td></td>
+                        <td></td>
+                        <td>{{item.qty}}</td>
+                        <td>{{currency}} {{item.cost}}</td>
+                        <td>{{currency}} {% widthratio item.qty 1 item.cost %}</td>
+                        <td></td>  
+                    </tr>
+                    {% endfor %}
+                   <tr class="noborder">
+                       <td>
+                       <td>
+                       <td>
+                       <td>
+                       <td>
+                       <td>
+                       <td>
+                       <td>
+
+                   </tr>
+                    <tr class="noborder">
+                       <td>
+                        <td>
+                       <td>
+                       <td>
+                       <td>
+                       <td>
+                       <td>
+                       <td>
+                   </tr>
+                    <tr class="noborder">
+                       <td>
+                        <td>
+                       <td>
+                       <td>
+                       <td>
+                       <td>
+                       <td>
+                       <td>
+                   </tr>
+                    <tr class="noborder">
+                       <td>
+                        <td>
+                       <td>
+                       <td>
+                       <td>
+                       <td>
+                       <td>
+                       <td>
+                   </tr>
+                    <tr class="noborder">
+                       <td>
+                        <td>
+                       <td>
+                       <td>
+                       <td>
+                       <td>
+                       <td>
+                       <td>
+                   </tr>
+                  
+                   <tr class="noborder">
+                       <td>
+                        <td>
+                       <td>
+                       <td>
+                       <td>
+                       <td>
+                       <td>
+                       <td>
+                   </tr>
+          
+
+                    <tr class="noborder">
+                       <td>
+                        <td>
+                       <td>
+                       <td>
+                       <td>
+                       <td>
+                       <td>
+                       <td>
+                   </tr>
+                    <tr class="noborder">
+                       <td>
+                        <td>
+                       <td>
+                       <td>
+                       <td>
+                       <td>
+                       <td>
+                       <td>
+                   </tr>
+                    <tr class="noborder">
+                       <td>
+                        <td>
+                       <td>
+                       <td>
+                       <td>
+                       <td>
+                       <td>
+                       <td>
+                   </tr>
+                   <tr class="noborder">
+                       <td>
+                        <td>
+                       <td>
+                       <td>
+                       <td>
+                       <td>
+                       <td>
+                       <td>
+                   </tr>
+           
+
+
+
+                    <tr style="line-height: 10px">
+                       <td colspan="2">Total</td>
+                       <td></td>
+                       <td></td>
+                       <td></td>
+                       <td></td>
+                       <td></td>
+                       <td>{{subtotal}}</td>
+                    </tr>
+                    <tr style="line-height: 10px">
+                       <td colspan="2">Tax Amount</td>
+                       <td></td>
+                       <td></td>
+                       <td></td>
+                       <td></td>
+                       <td></td>
+                       <td>{{taxamount}}</td>
+                    </tr style="line-height: 10px">
+                    <tr>
+                       <td colspan="2">Cess</td>
+                       <td></td>
+                       <td></td>
+                       <td></td>
+                       <td></td>
+                       <td></td>
+                       <td></td>
+                    </tr>
+                    <tr style="line-height: 10px">
+                       <td colspan="2">Transporting Charges</td>
+                       <td></td>
+                       <td></td>
+                       <td></td>
+                       <td></td>
+                       <td></td>
+                       <td></td>
+                    </tr>
+                    <tr style="line-height: 10px">
+                       <td colspan="2">Round Off</td>
+                       <td></td>
+                       <td></td>
+                       <td></td>
+                       <td></td>
+                       <td></td>
+                       <td></td>
+                    </tr>
+                    <tr style="line-height: 10px">
+                       <td colspan="2">Grand Total</td>
+                       <td></td>
+                       <td></td>
+                       <td></td>
+                       <td></td>
+                       <td></td>
+                       <td>{{grandtotal}}</td>
+                    </tr>
+                  
+                </table>
+                
+            </table>
+
+    <div style="border: 2px solid;padding: 10px;margin:10px; border-top-left-radius: 2em;">
+    <h2 >Grand Total In Words :  {{wordtotal}}<br>&nbsp</h2>
+    </div>
+
+
+    <h1 style="margin-left: 10px">E&O.E</h1>
+
+    <table>
+        <tr>
+            <td style="width: 90%">DECLARATION ( To be furnished by the seller ) </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td style="width: 90%">Certified that all the particulars shown in the above tax invoice are true and correct and that my our Registration KVAT Act 2003 is valid as on the date of this bill.  </td>
+            <td>Authorised signatory </td>
+        </tr>
+
+    </table>
+{% endblock %}
