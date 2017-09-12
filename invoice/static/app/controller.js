@@ -74,7 +74,7 @@ invoices.controller('InvoiceCtrl', ['$scope','$sce', '$http', 'DEFAULT_INVOICE',
       window.location.reload();
       var request = {
           method: 'POST',
-          url: url+'/send',
+          url: url+'/invoice/send',
           data:{
           "date":$scope.invoice.date,
           "due":$scope.invoice.due,
@@ -161,7 +161,7 @@ invoices.controller('InvoiceCtrl', ['$scope','$sce', '$http', 'DEFAULT_INVOICE',
   $scope.getpdf = function() {
 
     $http({
-        url: url+'/pdf',
+        url: url+'/invoice/pdf',
         method: "POST",
         data: {
         "number":$scope.invoice.invoice_number, 

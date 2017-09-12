@@ -1,0 +1,75 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Stamp Ordering made easy</title>
+                <!-- Core CSS - Include with every page -->
+                <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+                <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+                {% include 'material/includes/material_css.html' %}
+                <script src="{% static 'material/js/jquery-2.2.0.js' %}"></script>
+                {% include 'material/includes/material_js.html' %}
+                 <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+                 <style type="text/css">
+                 .errorlist li{
+                      display: block !important;
+                    }
+                   form ul:not(.browser-default) li {
+                        list-style-type: none;
+                        display: none;
+                    }
+                    
+                 </style>
+                </head>
+                <body>
+
+                {% if user.is_authenticated %}
+                    <nav class="blue sticky">
+                      
+                        <ul id="dropdown1" class="dropdown-content">
+                           {% if request.user.is_superuser %}
+                          <li><a href="/admin">Admin Panel</a></li>
+                          {% else %}
+                          <li><a href="/profile">Profile</a></li>
+                          {% endif %}
+                          <li><a href="#!">Settings</a></li>
+                          <li class="divider"></li>
+                          <li><a href="/logout">Logout</a></li>
+                        </ul>
+                    </nav>
+                {% else %}
+                    <nav class="blue">
+                        <div class="nav-wrapper">
+                          <a href="/" class="brand-logo">Zodiac Sign</a>
+                          <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+                          <ul class="right hide-on-med-and-down">
+                            <li><a href="/signup"><i class="material-icons left">perm_identity</i>Register</a></li>
+                            <li><a href="/"><i class="material-icons left">loop</i>Forgot password?</a></li>
+                          </ul>
+                          <ul class="side-nav" id="mobile-demo">
+                            <li><a href="/"><i class="material-icons left">home</i>Home</a></li>
+                            <li><a href="/signup"><i class="material-icons left">perm_identity</i>Register</a></li>
+                            <li><a href="/"><i class="material-icons left">loop</i>Forgot password?</a></li>
+                          </ul>
+                        </div>
+                    </nav>
+                {% endif %}
+                    
+
+                {% block content %}
+                {% endblock %}
+
+
+                    <!-- Core Scripts - Include with every page -->
+                    
+                    <script src = "{% static 'js/main.js' %}"></script>
+        {% block javascript %}
+        {% endblock %}
+
+
+            </body>
+        </html>
+

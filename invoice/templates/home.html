@@ -21,11 +21,11 @@
 		  <div class="container" id="printcontainer">
 		  	<div class="noPrint actions col-xs-12" data-html2canvas-ignore>
 		  	  <a href="#" class="btn btn-primary" ng-show="printMode" ng-click="getpdf()">Download Invoice</a>
-		  	  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" ng-show="printMode">Send Invoice</button>
 		      <a href="#" class="btn btn-primary" ng-show="printMode" ng-click="printInfo()">Print</a>
 		      <a href="#" class="btn btn-primary" ng-hide="printMode" ng-click="clearLocalStorage()">Reset</a>
 		      <button href="#" class="btn btn-primary" ng-hide="printMode" ng-click="printmodeon()">Switch To Print Mode</button>
 		      <a href="#" class="btn btn-primary" ng-show="printMode" ng-click="printmodeoff()">Back To Edit Mode</a>
+		      <a href="/logout" class="btn btn-primary" >Logout</a>
 		    </div >
 			<div class="row papers col-xs-12" id="paper">
 			<div class="row branding">

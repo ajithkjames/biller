@@ -31,6 +31,9 @@ ALLOWED_HOSTS = ['192.168.1.105','127.0.0.1']
 # Application definition
 
 INSTALLED_APPS = [
+    'material',
+    'material.frontend',
+    'material.admin',
     'invoice',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -122,3 +125,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
+
+LOGIN_URL= '/'
+LOGOUT_URL = 'logout'
+LOGIN_REDIRECT_URL = '/invoice'
